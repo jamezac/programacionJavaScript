@@ -1,0 +1,21 @@
+{
+  // Practicar los retos sin autocompletado.
+  // Si te atascas, Ctrl + Espacio sigue mostrando sugerencias a mano.
+
+  // Lista de sugerencias mientras escribes
+  "editor.quickSuggestions": {
+    "other": "off",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.wordBasedSuggestions": "off",
+  "editor.snippetSuggestions": "none",
+  "editor.acceptSuggestionOnEnter": "off",
+
+  // Ayuda con los parámetros al llamar funciones
+  "editor.parameterHints.enabled": false,
+
+  // Texto gris "fantasma" de IA (Copilot u otras extensiones)
+  "editor.inlineSuggest.enabled": false
+}
