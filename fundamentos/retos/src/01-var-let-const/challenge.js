@@ -40,8 +40,9 @@ function obtenerNombreCurso() {
 // Pista: guarda el valor inicial antes de reasignar.
 function reasignarMensaje() {
   let mensaje = "hola";
-  mensaje = "adiós";
-  return { inicial: "hola", final: "adiós" };
+  const inicial = mensaje; // guardas "hola" antes de reasignar
+  mensaje = "adiós"; // reasignas a "adiós"
+  return { inicial, final: mensaje };
 }
 
 
@@ -55,7 +56,7 @@ function calcularTotal() {
   const precioBase = 100;
   let descuento = 10;
   descuento = 25;
-  total = precioBase - descuento;
+  const total = precioBase - descuento;
   return { precioBase, descuento, total };
 }
 
