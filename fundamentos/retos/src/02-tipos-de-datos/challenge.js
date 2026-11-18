@@ -18,15 +18,34 @@
 //   { texto, numero, booleano, nulo, indefinido, simbolo, grande }
 // donde cada valor es el resultado de typeof sobre la variable.
 function identificarPrimitivos() {
-  // Tu código aquí
+  const texto = "hola";
+  const numero = 42;
+  const booleano = true;
+  const nulo = null;
+  const indefinido = undefined;
+  const simbolo = Symbol("id");
+  const grande = 123n;
+  return { 
+    texto: typeof texto, 
+    numero: typeof numero, 
+    booleano: typeof booleano, 
+    nulo: typeof nulo, 
+    indefinido: typeof indefinido, 
+    simbolo: typeof simbolo, 
+    grande: typeof grande,
+  };
 }
 
 // --- Reto 2: Diferenciar string y number ---
 // Recibe un parámetro "valor".
 // Retorna un objeto con:
 //   { tipo: typeof valor, esString: true/false, esNumber: true/false }
-function diferenciarStringNumber(valor) {
-  // Tu código aquí
+function diferenciarStringNumber(valor) {  
+  return { 
+    tipo: typeof valor, 
+    esString: typeof valor === "string", 
+    esNumber: typeof valor === "number",
+  };
 }
 
 // --- Reto 3: El caso especial de null ---
@@ -36,7 +55,12 @@ function diferenciarStringNumber(valor) {
 // Pista: typeof null devuelve "object", pero debes verificar
 // si realmente es null usando una comparación estricta (===).
 function explorarNull() {
-  // Tu código aquí
+  const nulo = null;
+  return {
+    valor: nulo,
+    tipo: typeof nulo,
+    esNull: nulo === null,
+  };
 }
 
 // --- Reto 4: Undefined vs Null ---
@@ -45,7 +69,16 @@ function explorarNull() {
 // Retorna un objeto con:
 //   { sinAsignar, vacio, tipoSinAsignar: typeof sinAsignar, tipoVacio: typeof vacio, sonIguales: sinAsignar == vacio, sonEstrictamenteIguales: sinAsignar === vacio }
 function compararNullUndefined() {
-  // Tu código aquí
+  let sinAsignar;
+  const vacio = null;
+  return {
+    sinAsignar,
+    vacio,
+    tipoSinAsignar: typeof sinAsignar,
+    tipoVacio: typeof vacio,
+    sonIguales: sinAsignar == vacio, 
+    sonEstrictamenteIguales: sinAsignar === vacio, 
+  };
 }
 
 // --- Reto 5: Symbol y BigInt ---
@@ -54,7 +87,14 @@ function compararNullUndefined() {
 // Retorna un objeto con:
 //   { tipoSymbol: typeof del symbol, tipoBigInt: typeof del bigint, descripcionSymbol: symbol.description, valorBigInt: el bigint creado }
 function crearSymbolYBigInt() {
-  // Tu código aquí
+  const simbolo = Symbol("miID");
+  const grande = 9007199254740991n;
+  return {
+    tipoSymbol: typeof simbolo, 
+    tipoBigInt: typeof grande, 
+    descripcionSymbol: simbolo.description, 
+    valorBigInt: grande,
+  };
 }
 
 // --- Reto 6: Crear un objeto ---
@@ -65,7 +105,12 @@ function crearSymbolYBigInt() {
 // Retorna un objeto con:
 //   { persona, tipoPersona: typeof persona, propiedades: Object.keys(persona) }
 function crearObjeto() {
-  // Tu código aquí
+  const persona = { nombre: 'Juan', edad: 42, activo: true };
+  return {
+    persona, 
+    tipoPersona: typeof persona, 
+    propiedades: Object.keys(persona),
+  };
 }
 
 // --- Reto 7: Trabajar con arrays ---
@@ -73,7 +118,15 @@ function crearObjeto() {
 // Retorna un objeto con:
 //   { arreglo: mezcla, esArreglo: Array.isArray(mezcla), largo: mezcla.length, tipos: [typeof de cada elemento] }
 function trabajarConArreglos() {
-  // Tu código aquí
+  const mezcla = [ 1, "dos", true, null ];
+  return {
+    arreglo: mezcla, 
+    esArreglo: Array.isArray(mezcla), 
+    largo: mezcla.length, 
+    // Mi intento: escribía los valores a mano, no usaba "mezcla"
+    // tipos: [typeof 1, typeof "dos", typeof true, typeof null],
+    tipos: mezcla.map((el) => typeof el),
+  };  
 }
 
 // --- Reto 8: Funciones como valor ---
@@ -82,7 +135,13 @@ function trabajarConArreglos() {
 // Retorna un objeto con:
 //   { tipoFuncion: typeof saludar, resultado: saludar("JavaScript") }
 function funcionComoValor() {
-  // Tu código aquí
+  const saludar = function (nombre) { 
+    return `Hola, ${nombre}!`; 
+  };
+  return {
+    tipoFuncion: typeof saludar, 
+    resultado: saludar("JavaScript"),
+  };
 }
 
 // --- Reto 9: Clasificar tipo de dato ---
@@ -95,7 +154,14 @@ function funcionComoValor() {
 //   - En cualquier otro caso, clasificación es "primitivo".
 // Pista: primero verifica si es null, luego revisa typeof.
 function clasificarTipo(valor) {
-  // Tu código aquí
+  if (valor === null) {
+    return { valor, tipo: typeof valor, clasificacion: "primitivo" };
+  }
+  const tipo = typeof valor;
+  if (tipo === "object" || tipo === "function") {
+    return { valor, tipo, clasificacion: "complejo" };
+  }
+  return { valor, tipo, clasificacion: "primitivo" };
 }
 
 module.exports = {
